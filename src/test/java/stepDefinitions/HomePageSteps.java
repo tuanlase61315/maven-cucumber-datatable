@@ -19,11 +19,5 @@ public class HomePageSteps {
 		homePage = PageGeneratorManager.getHomePage(driver);
 	}
 
-	@Then("^Success message displayed \"([^\"]*)\"$")
-	public void successMessageDisplayed(String message) {
-		Assert.assertEquals(homePage.getRegisterSuccessMessage(), message);
-
-	   
-	}
 
 }

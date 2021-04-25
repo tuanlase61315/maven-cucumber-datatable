@@ -22,4 +22,14 @@ public class MyAccountPageObject extends BasePage{
 		clickToElement(driver, MyAccountPageUI.CLOSE_ICON_NOTIFICATION);
 		sleepInSecond(2);
 	}
+	
+	public String getProductReviewTitle() {
+		waitForElementVisible(driver, MyAccountPageUI.PRODUCT_REVIEW_TITLE);
+		return getTextElement(driver, MyAccountPageUI.PRODUCT_REVIEW_TITLE);
+	}
+	
+	public String getProductReviewContent() {
+		waitForElementVisible(driver, MyAccountPageUI.PRODUCT_REVIEW_CONTENT);
+		return getTextElement(driver, MyAccountPageUI.PRODUCT_REVIEW_CONTENT);
+	}
 }

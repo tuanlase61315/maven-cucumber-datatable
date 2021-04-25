@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import pageUI.CommonPageUI;
+import pageUI.HomePageUI;
 import pageUI.RegisterPageUI;
 
 public class CommonPageObject extends BasePage {
@@ -31,6 +32,11 @@ public class CommonPageObject extends BasePage {
 	public String getLessThan6CharacterErrorMessage() {
 		waitForElementVisible(driver, RegisterPageUI.LESS_THAN_6_CHARACTER_MESSAGE);
 		return getTextElement(driver, RegisterPageUI.LESS_THAN_6_CHARACTER_MESSAGE);
+	}
+	
+	public String getRegisterSuccessMessage() {
+		waitForElementVisible(driver, CommonPageUI.SUCCESS_MESSAGE);
+		return getTextElement(driver, CommonPageUI.SUCCESS_MESSAGE);	
 	}
 
 	// DYNAMIC LOCATOR
@@ -90,5 +96,24 @@ public class CommonPageObject extends BasePage {
 		return getElementText(driver, CommonPageUI.DYNAMIC_ADDRESS_INFO_BY_CLASS, className);
 	}
 	
+	public void clickToCategoryTopMenuByCategory(String category) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_TOP_MENU_BY_TEXT, category);
+		clickToElement(driver, CommonPageUI.DYNAMIC_TOP_MENU_BY_TEXT, category);
+	}
+	
+	public void clickToAddToCartButtonByProductName(String productName) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_ADD_TO_CART_BY_PRODUCT_NAME, productName);
+		clickToElement(driver, CommonPageUI.DYNAMIC_ADD_TO_CART_BY_PRODUCT_NAME, productName);
+	}
+	
+	public void clickToSubListCategoryByText(String subList) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_SUB_LIST_TOP_MENU_BY_TEXT, subList);
+		clickToElement(driver, CommonPageUI.DYNAMIC_SUB_LIST_TOP_MENU_BY_TEXT, subList);
+	}
+	
+	public void clickToDynamicRatingRadioButtonByValue(String value) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_RATTING_RADIO_BUTTON_BY_VALUE, value);
+		clickToElement(driver, CommonPageUI.DYNAMIC_RATTING_RADIO_BUTTON_BY_VALUE, value);
+	}
 
 }

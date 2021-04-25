@@ -28,5 +28,7 @@ public class MyAccountSteps {
 		Assert.assertEquals(myAccountPage.getChangePasswordSuccessText(), message);
 		
 	}
+	
+	
 
 }

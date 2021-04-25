@@ -174,4 +174,27 @@ Feature: My Account Feature
       | Old Passwrod | New Password | Email              		| 
       | 123123       | 123321       | diemtrang04@gmail.com | 
   
+  @productReivew
+  Scenario Outline: My Product Review
+  	Given Click to "<Category>" in Top Menu
+  	When Click to sub list with data "<List>"
+  	When Click to Add To Cart with product name "<Product Name>"
+  	And Click to Add Your Review link text
+  
+   	And Input to "AddProductReview.Title" textbox with value "<Review Title>"
+   	And Input to "AddProductReview.ReviewText" textbox with value "<Review Content>"
+   	And Click to Rating radio button with value "<Rating>"
+   
+   	And Click to "Submit review" button
+  	Then Success message displayed "Product review is successfully added."
+  	And Click to "My account" link text
+  	And Click to "My product reviews" navigation menu
+  	And Verify Product Review Title diplayed with "<Review Title>"
+  	And Verify Product Review Content diplayed with "<Review Content>"
+  	
+    Examples: Change Passwort info
+      | Category  | List     | Product Name            | Review Title | Review Content | Rating | 
+      | Computers | Desktops | Build your own computer | The first    | it's OK        | 4      | 
+  
+  	
   

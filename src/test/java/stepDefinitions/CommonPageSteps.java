@@ -9,7 +9,6 @@ import cucumber.api.java.en.When;
 import cucumberOptions.Hooks;
 import pageObjects.CommonPageObject;
 import pageObjects.PageGeneratorManager;
-import pageUI.CommonPageUI;
 
 public class CommonPageSteps {
 	WebDriver driver;
@@ -24,42 +23,47 @@ public class CommonPageSteps {
 
 	@Then("^Click to \"([^\"]*)\" link text$")
 	public void clickToDynamicLinkText(String linkText) {
-		switch (linkText) {
-		case "Register":
-			commonPage.clickToDynamicTextLinkByText("Register");
-			break;
-		case "Log out":
-			commonPage.clickToDynamicTextLinkByText("Log out");
-			break;
-		case "Log in":
-			commonPage.clickToDynamicTextLinkByText("Log in");
-			break;
-		case "My account":
-			commonPage.clickToDynamicTextLinkByText("My account");
-			break;
-		}
+//		switch (linkText) {
+//		case "Register":
+//			commonPage.clickToDynamicTextLinkByText("Register");
+//			break;
+//		case "Log out":
+//			commonPage.clickToDynamicTextLinkByText("Log out");
+//			break;
+//		case "Log in":
+//			commonPage.clickToDynamicTextLinkByText("Log in");
+//			break;
+//		case "My account":
+//			commonPage.clickToDynamicTextLinkByText("My account");
+//			break;
+//		}
+		commonPage.clickToDynamicTextLinkByText(linkText);
 	}
 
 	@When("^Click to \"([^\"]*)\" button$")
 	public void clickToDynamicButton(String buttonName) {
-		switch (buttonName) {
-		case "Register":
-			commonPage.clickToDynamicButtonByText("Register");
-			break;
-		case "Log in":
-			commonPage.clickToDynamicButtonByText("Log in");
-			break;
-		case "Save":
-			commonPage.clickToDynamicButtonByText("Save");
-			break;
-		case "Add new":
-			commonPage.clickToDynamicButtonByText("Add new");
-			break;
-		case "Change password":
-			commonPage.clickToDynamicButtonByText("Change password");
-			break;
-		}
-
+//		switch (buttonName) {
+//		case "Register":
+//			commonPage.clickToDynamicButtonByText("Register");
+//			break;
+//		case "Log in":
+//			commonPage.clickToDynamicButtonByText("Log in");
+//			break;
+//		case "Save":
+//			commonPage.clickToDynamicButtonByText("Save");
+//			break;
+//		case "Add new":
+//			commonPage.clickToDynamicButtonByText("Add new");
+//			break;
+//		case "Change password":
+//			commonPage.clickToDynamicButtonByText("Change password");
+//			break;
+//		case "Change password":
+//			commonPage.clickToDynamicButtonByText("Change password");
+//			break;
+//		}
+		
+		commonPage.clickToDynamicButtonByText(buttonName);
 	}
 
 	@When("^Select to Gender raido button with value \"([^\"]*)\"$")
@@ -124,6 +128,14 @@ public class CommonPageSteps {
 	@Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
 	public void verifyAddressDisplayedWithValue(String className, String city, String state, String zip) {
 		Assert.assertEquals(commonPage.getAddressInfoByClass(className), city + ", " + state + ", " + zip);
+	}
+	
+
+	@Then("^Success message displayed \"([^\"]*)\"$")
+	public void successMessageDisplayed(String message) {
+		Assert.assertEquals(commonPage.getRegisterSuccessMessage(), message);
+
+	   
 	}
 
 }

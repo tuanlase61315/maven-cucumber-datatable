@@ -12,10 +12,7 @@ public class HomePageObject extends BasePage{
 		this.driver = driver;
 	}
 
-	public String getRegisterSuccessMessage() {
-		waitForElementVisible(driver, HomePageUI.REGISTER_SUCCESS_MESSAGE);
-		return getTextElement(driver, HomePageUI.REGISTER_SUCCESS_MESSAGE);	
-	}
+
 	
 	
 }
