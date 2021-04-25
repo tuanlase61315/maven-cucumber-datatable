@@ -36,7 +36,7 @@ Feature: My Account Feature
 		
 	 Examples: Register info
 	 | Gender | FirstName | LastName | DateOfBirthDay | DateOfBirthMonth | DateOfBirthYear | Email              | Company | Password | ConfirmPassword |Message| 
-   | Male   | tuan      | le       | 29         		| March      		 | 1993        		   | tuanla07@gmail.com | ABC     | 123123   | 123123          |Your registration completed| 
+   | Male   | tuan      | le       | 29         		| March      		 | 1993        		   | tuanla02@gmail.com | ABC     | 123123   | 123123          |Your registration completed| 
    
   
   @login
@@ -56,7 +56,7 @@ Feature: My Account Feature
     
    Examples: Login info
 	 | Email             | Password |
-   | tuanla07@gmail.com| 123123   |
+   | tuanla02@gmail.com| 123123   |
    
    
 	@editMyAccount
@@ -94,7 +94,7 @@ Feature: My Account Feature
     
    Examples: My Account info
 	 | Gender | FirstName | LastName | DateOfBirthDay | DateOfBirthMonth | DateOfBirthYear | Email              	 | Company |
-   | Female | diem      | trang    | 13         		| February      	 | 1998        		 | diemtrang01@gmail.com | DEF     |
+   | Female | diem      | trang    | 13         		| February      	 | 1998        		 | diemtrang04@gmail.com | DEF     |
    
    @address
     Scenario Outline: Add Address Info
@@ -141,10 +141,37 @@ Feature: My Account Feature
 
  	Examples: Address info
       | FirstName | LastName | Email                 | Company | Country       | State | City | Address1   | Address2         | Zip    | Phone      | Fax        | 
-      | diem      | trang    | diemtrang01@gmail.com | DEF     | United States | Guam  | HCM  | le duc tho | nguyen van luong | 880000 | 0909090909 | 1234567890 | 
+      | diem      | trang    | diemtrang03@gmail.com | DEF     | United States | Guam  | HCM  | le duc tho | nguyen van luong | 880000 | 0909090909 | 1234567890 | 
   
   
   @changePassowrd
   Scenario Outline: Change Password
+  #Navi Menu
+    Given Click to "Change password" navigation menu
+    When Input to "OldPassword" textbox with value "<Old Passwrod>"
+    And Input to "NewPassword" textbox with value "<New Password>"
+    And Input to "ConfirmNewPassword" textbox with value "<New Password>"
+    
+    #Button
+    And Click to "Change password" button
+    Then Change Password success message "Password was changed" displayed
+    When Click to close button in success notification
+    Given Click to "Log out" link text
+    #Link
+    And Click to "Log in" link text
+    
+    #Textbox 
+    When Input to "Email" textbox with value "<Email>"
+    And Input to "Password" textbox with value "<New Password>"
+    
+    #Button
+    And Click to "Log in" button
+    
+    #Link
+    Then Verify "Log out" link text is displayed  
+     
+    Examples: Change Passwort info
+      | Old Passwrod | New Password | Email              		| 
+      | 123123       | 123321       | diemtrang04@gmail.com | 
   
   

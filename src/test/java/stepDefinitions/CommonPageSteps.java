@@ -11,7 +11,6 @@ import pageObjects.CommonPageObject;
 import pageObjects.PageGeneratorManager;
 import pageUI.CommonPageUI;
 
-
 public class CommonPageSteps {
 	WebDriver driver;
 	CommonPageObject commonPage;
@@ -22,7 +21,6 @@ public class CommonPageSteps {
 		this.testContext = testContext;
 		commonPage = PageGeneratorManager.getCommonPage(driver);
 	}
-
 
 	@Then("^Click to \"([^\"]*)\" link text$")
 	public void clickToDynamicLinkText(String linkText) {
@@ -41,8 +39,7 @@ public class CommonPageSteps {
 			break;
 		}
 	}
-	
-	
+
 	@When("^Click to \"([^\"]*)\" button$")
 	public void clickToDynamicButton(String buttonName) {
 		switch (buttonName) {
@@ -57,32 +54,34 @@ public class CommonPageSteps {
 			break;
 		case "Add new":
 			commonPage.clickToDynamicButtonByText("Add new");
-			break;	
+			break;
+		case "Change password":
+			commonPage.clickToDynamicButtonByText("Change password");
+			break;
 		}
 
 	}
-	
+
 	@When("^Select to Gender raido button with value \"([^\"]*)\"$")
 	public void selectToDynamicGenderRaidoButtonWithValue(String radioButtonValue) {
-	   commonPage.clickToGenderRadioByText(radioButtonValue);	   
+		commonPage.clickToGenderRadioByText(radioButtonValue);
 	}
 
 	@When("^Input to \"([^\"]*)\" textbox with value \"([^\"]*)\"$")
 	public void inputToDynamicTextboxWithValue(String fieldName, String inputValue) {
-	   commonPage.inputToDynamicTextboxByName(fieldName, inputValue);	   
+		commonPage.inputToDynamicTextboxByName(fieldName, inputValue);
 	}
 
 	@When("^Select \"([^\"]*)\" dropdown with value \"([^\"]*)\"$")
 	public void selectDynamicDropdownWithValue(String dropdownName, String selectValue) {
-	   commonPage.selectDateOfBirthDropdownByName(dropdownName, selectValue);
+		commonPage.selectDateOfBirthDropdownByName(dropdownName, selectValue);
 	}
-	
+
 	@Then("^Verify \"([^\"]*)\" link text is displayed$")
 	public void verifyDynamicLinkTextIsDisplayed(String textLink) {
 		Assert.assertTrue(commonPage.isDynamicTextLinkIsDisplayed(textLink));
 	}
-	
-	
+
 	@Then("^Verify \"([^\"]*)\" textbox displayed with value \"([^\"]*)\"$")
 	public void verifyTextboxDisplayedWithValue(String fieldName, String inputValue) {
 		Assert.assertEquals(commonPage.getDynamicTextboxAttributeValue(fieldName), inputValue);
@@ -92,15 +91,15 @@ public class CommonPageSteps {
 	public void verifyDropdownDisplayedWithValue(String dropdownName, String selectValue) {
 		Assert.assertEquals(commonPage.getDynamicDropdownValueByName(dropdownName), selectValue);
 	}
-	
-    @Given("^Click to \"([^\"]*)\" navigation menu$")
-    public void clickToNavigationMenu(String menuName) {
-    	commonPage.clickToDynamicNaviMenuByText(menuName);
-    }
-    
-    @Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"$")
-    public void verifyAddressDisplayedWithValue(String className, String textValue){
-    	switch (className) {
+
+	@Given("^Click to \"([^\"]*)\" navigation menu$")
+	public void clickToNavigationMenu(String menuName) {
+		commonPage.clickToDynamicNaviMenuByText(menuName);
+	}
+
+	@Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"$")
+	public void verifyAddressDisplayedWithValue(String className, String textValue) {
+		switch (className) {
 		case "email":
 			Assert.assertEquals(commonPage.getAddressInfoByClass(className), "Email: " + textValue);
 			break;
@@ -114,18 +113,17 @@ public class CommonPageSteps {
 			Assert.assertEquals(commonPage.getAddressInfoByClass(className), textValue);
 			break;
 		}
-    	
-    }
 
-    @Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"\"([^\"]*)\"$")
-    public void verifyAddressDisplayedWithValue(String className, String firtName, String lastName) {
-    	Assert.assertEquals(commonPage.getAddressInfoByClass(className), firtName + " " + lastName);
-    }
+	}
 
-    @Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
-    public void verifyAddressDisplayedWithValue(String className, String city, String state, String zip) {
-    	Assert.assertEquals(commonPage.getAddressInfoByClass(className), city + ", " + state + ", " + zip);
-    }
+	@Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"\"([^\"]*)\"$")
+	public void verifyAddressDisplayedWithValue(String className, String firtName, String lastName) {
+		Assert.assertEquals(commonPage.getAddressInfoByClass(className), firtName + " " + lastName);
+	}
+
+	@Then("^Verify \"([^\"]*)\" address displayed with value \"([^\"]*)\"\"([^\"]*)\"\"([^\"]*)\"$")
+	public void verifyAddressDisplayedWithValue(String className, String city, String state, String zip) {
+		Assert.assertEquals(commonPage.getAddressInfoByClass(className), city + ", " + state + ", " + zip);
+	}
 
 }
-
