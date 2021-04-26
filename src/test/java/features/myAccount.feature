@@ -178,11 +178,11 @@ Feature: My Account Feature
   Scenario Outline: My Product Review
   	Given Click to "<Category>" in Top Menu
   	When Click to sub list with data "<List>"
-  	When Click to Add To Cart with product name "<Product Name>"
+  	When Click to Add To Cart button with product name "<Product Name>"
   	And Click to Add Your Review link text
   
    	And Input to "AddProductReview.Title" textbox with value "<Review Title>"
-   	And Input to "AddProductReview.ReviewText" textbox with value "<Review Content>"
+   	And Input to "AddProductReview.ReviewText" textarea with value "<Review Content>"
    	And Click to Rating radio button with value "<Rating>"
    
    	And Click to "Submit review" button

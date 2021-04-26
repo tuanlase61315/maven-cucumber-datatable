@@ -1,5 +1,6 @@
 package stepDefinitions;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import cucumber.api.java.en.Given;
@@ -18,45 +19,39 @@ public class ProductPageStep {
 		productPage = PageGeneratorManager.getProductPage(driver);
 	}
 
-	@Given("^Click to \"([^\"]*)\" in Top Menu$")
-	public void clickToInTopMenu(String arg1) {
-	   
-	   
-	}
-
-	@When("^Click to sub list with data \"([^\"]*)\"$")
-	public void clickToSubListWithData(String arg1) {
-	   
-	   
-	}
-
-	@When("^Click to Add To Cart with product name \"([^\"]*)\"$")
-	public void clickToAddToCartWithProductName(String arg1) {
-	   
-	   
-	}
-
 	@When("^Click to Add Your Review link text$")
 	public void clickToAddYourReviewLinkText() {
-	   
-	   
+		productPage.clickToAddYourReviewLinkText();
 	}
 
-	@When("^Click to Rating radio button with value \"([^\"]*)\"$")
-	public void clickToRatingRadioButtonWithValue(String arg1) {
-	   
-	   
+	@Then("^Verify search product warning with message \"([^\"]*)\"$")
+	public void verifySearchProductWarningWithMessage(String message) {
+		Assert.assertEquals(productPage.getSearchProductWarning(), message);
 	}
 
-	@Then("^Verify Product Review Title diplayed with \"([^\"]*)\"$")
-	public void verifyProductReviewTitleDiplayedWith(String arg1) {
-	   
-	   
+	@Then("^Verify search result display with \"([^\"]*)\" products$")
+	public void verifySearchResultDisplayWithProducts(String numberProduct) {
+		Assert.assertEquals(String.valueOf(productPage.getSearchProductResultNumber()), numberProduct);
 	}
 
-	@Then("^Verify Product Review Content diplayed with \"([^\"]*)\"$")
-	public void verifyProductReviewContentDiplayedWith(String arg1) {
-	   
-	   
+	@Then("^Verify product sorted \"([^\"]*)\"$")
+	public void verifyProductSorted(String sortby) {
+		switch (sortby) {
+		case "Name: A to Z":
+			Assert.assertTrue(productPage.isProductSortedAscendingByName());
+			break;
+		case "Name: Z to A":
+			Assert.assertTrue(productPage.isProductSortedDescendingByName());
+			break;
+		case "Price: Low to High":
+			Assert.assertTrue(productPage.isProductSortedAscendingByPrice());
+			break;
+		case "Price: High to Low":
+			Assert.assertTrue(productPage.isProductSortedDescendingByPrice());
+			break;
+		default:
+			break;
+		}
+		
 	}
 }

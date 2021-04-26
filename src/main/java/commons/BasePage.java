@@ -582,7 +582,7 @@ public class BasePage {
 	}
 
 	/* Sort String Descending */
-	public boolean isDataStringDSortedDescending(WebDriver driver, String locator) {
+	public boolean isDataStringSortedDescending(WebDriver driver, String locator) {
 		ArrayList<String> arrayList = new ArrayList<>();
 
 		List<WebElement> elementList = driver.findElements(By.xpath(locator));

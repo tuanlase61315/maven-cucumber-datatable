@@ -9,10 +9,12 @@ import cucumber.api.java.en.When;
 import cucumberOptions.Hooks;
 import pageObjects.CommonPageObject;
 import pageObjects.PageGeneratorManager;
+import pageObjects.ProductPageObject;
 
 public class CommonPageSteps {
 	WebDriver driver;
 	CommonPageObject commonPage;
+	ProductPageObject productPage;
 	TestContext testContext;
 
 	public CommonPageSteps(TestContext testContext) {
@@ -42,28 +44,17 @@ public class CommonPageSteps {
 
 	@When("^Click to \"([^\"]*)\" button$")
 	public void clickToDynamicButton(String buttonName) {
-//		switch (buttonName) {
-//		case "Register":
-//			commonPage.clickToDynamicButtonByText("Register");
-//			break;
-//		case "Log in":
-//			commonPage.clickToDynamicButtonByText("Log in");
-//			break;
-//		case "Save":
-//			commonPage.clickToDynamicButtonByText("Save");
-//			break;
-//		case "Add new":
-//			commonPage.clickToDynamicButtonByText("Add new");
-//			break;
-//		case "Change password":
-//			commonPage.clickToDynamicButtonByText("Change password");
-//			break;
-//		case "Change password":
-//			commonPage.clickToDynamicButtonByText("Change password");
-//			break;
-//		}
+		switch (buttonName) {
+		case "Search":
+			productPage = PageGeneratorManager.getProductPage(driver);
+			productPage.clickToSearchButtonInFormSearch();
+			break;
+		default:
+			commonPage.clickToDynamicButtonByText(buttonName);
+			break;
+		}
 		
-		commonPage.clickToDynamicButtonByText(buttonName);
+		
 	}
 
 	@When("^Select to Gender raido button with value \"([^\"]*)\"$")
@@ -73,12 +64,27 @@ public class CommonPageSteps {
 
 	@When("^Input to \"([^\"]*)\" textbox with value \"([^\"]*)\"$")
 	public void inputToDynamicTextboxWithValue(String fieldName, String inputValue) {
-		commonPage.inputToDynamicTextboxByName(fieldName, inputValue);
+		switch (fieldName) {
+		case "q":
+			productPage = PageGeneratorManager.getProductPage(driver);
+			productPage.inputToSearchTextboxInFormSearch(inputValue);
+			break;
+		default:
+			commonPage.inputToDynamicTextboxByName(fieldName, inputValue);
+			break;
+		}
+		
+	}
+	
+	@When("^Input to \"([^\"]*)\" textarea with value \"([^\"]*)\"$")
+	public void inputToDynamicTextareaWithValue(String fieldName, String inputValue) {
+		commonPage.inputToDynamicTextareaByName(fieldName, inputValue);
 	}
 
 	@When("^Select \"([^\"]*)\" dropdown with value \"([^\"]*)\"$")
 	public void selectDynamicDropdownWithValue(String dropdownName, String selectValue) {
-		commonPage.selectDateOfBirthDropdownByName(dropdownName, selectValue);
+		commonPage.selectDynamicDropdownByName(dropdownName, selectValue);
+		commonPage.sleepInSecond(1);
 	}
 
 	@Then("^Verify \"([^\"]*)\" link text is displayed$")
@@ -137,5 +143,38 @@ public class CommonPageSteps {
 
 	   
 	}
+	
+	@Given("^Click to \"([^\"]*)\" in Top Menu$")
+	public void clickToInTopMenu(String category) {
+		commonPage.clickToCategoryTopMenuByCategory(category);
+	}
+
+	@When("^Click to sub list with data \"([^\"]*)\"$")
+	public void clickToSubListWithData(String subList) {
+		commonPage.clickToSubListCategoryByText(subList);
+	}
+
+	@When("^Click to Add To Cart button with product name \"([^\"]*)\"$")
+	public void clickToAddToCartWithProductName(String productName) {
+	   commonPage.clickToAddToCartButtonByProductName(productName);   
+	}
+	
+	@When("^Click to Rating radio button with value \"([^\"]*)\"$")
+	public void clickToRatingRadioButtonWithValue(String selectValue) {
+		commonPage.clickToDynamicRatingRadioButtonByValue(selectValue);	   
+	}
+	
+	 @Given("^Open \"([^\"]*)\" footer page$")
+	public void onenFooterPage(String pageName) {
+		commonPage.clickToDynamicFooterLinktext(pageName);	    
+	}
+
+
+
+	@When("^Check to \"([^\"]*)\" checkbox$")
+	public void checkToCheckbox(String checkboxName) {
+		commonPage.checkToDynamicCheckboxByText(checkboxName);	    
+	}
+
 
 }

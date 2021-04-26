@@ -15,7 +15,7 @@ import cucumber.api.junit.Cucumber;
 		plugin = { "pretty", "html:target/site/cucumber-report-default", "json:target/site/cucumber.json"},
 		snippets = SnippetType.CAMELCASE,
 		//tags = "@login, @editMyAccount, @address"
-		tags = "@productReivew"
+		tags = "@sortAndPaging"
 		
 		)
 

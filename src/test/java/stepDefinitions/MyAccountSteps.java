@@ -29,6 +29,17 @@ public class MyAccountSteps {
 		
 	}
 	
+	@Then("^Verify Product Review Title diplayed with \"([^\"]*)\"$")
+	public void verifyProductReviewTitleDiplayedWith(String title) {
+		Assert.assertEquals(myAccountPage.getProductReviewTitle(), title);
+	   
+	}
+
+	@Then("^Verify Product Review Content diplayed with \"([^\"]*)\"$")
+	public void verifyProductReviewContentDiplayedWith(String content) {
+		Assert.assertEquals(myAccountPage.getProductReviewContent(), content);
+	   
+	}
 	
 
 }
