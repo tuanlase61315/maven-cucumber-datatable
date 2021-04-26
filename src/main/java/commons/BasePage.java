@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Set;
 
@@ -294,8 +295,16 @@ public class BasePage {
 	}
 
 	public boolean isElementDisplay(WebDriver driver, String locator) {
-		return getElement(driver, locator).isDisplayed();
+		try {
+			return getElement(driver, locator).isDisplayed();
+		} catch (Exception e) {
+//			e.printStackTrace();
+			return false;
+		}
+		
 	}
+	
+
 	
 	public boolean isElementDisplay(WebDriver driver, String locator, String... values) {
 		return getElement(driver, getDynamicLocator(locator, values)).isDisplayed();
@@ -470,7 +479,7 @@ public class BasePage {
 			return false;
 		}
 	}
-
+	
 	public void waitForElementVisible(WebDriver driver, String locator) {
 		explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(locator)));
@@ -625,7 +634,7 @@ public class BasePage {
 		List<WebElement> elementList = driver.findElements(By.xpath(locator));
 
 		for (WebElement element : elementList) {
-			arrayList.add(Float.parseFloat(element.getText().replace("$", "").trim()));
+			arrayList.add(Float.parseFloat(element.getText().replace("$", "").replace(",", "").trim()));
 		}
 
 		System.out.println("---Du lieu tren UI---");
@@ -656,7 +665,7 @@ public class BasePage {
 		List<WebElement> elementList = driver.findElements(By.xpath(locator));
 
 		for (WebElement element : elementList) {
-			arrayList.add(Float.parseFloat(element.getText().replace("$", "").trim()));
+			arrayList.add(Float.parseFloat(element.getText().replace("$", "").replace(",", "").trim()));
 		}
 
 		System.out.println("---Du lieu tren UI---");

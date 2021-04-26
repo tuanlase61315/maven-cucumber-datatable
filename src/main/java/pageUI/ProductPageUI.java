@@ -9,4 +9,7 @@ public class ProductPageUI {
 
 	public static final String LIST_PRODUCT_NAME = "//h2[@class='product-title']//a";
 	public static final String LIST_PRODUCT_PRICE = "//div[@class='prices']/span";
+	
+	public static final String NEXT_PAGE_ICON = "//li[@class='next-page']/a";
+	public static final String PREVIOUS_PAGE_ICON = "//li[@class='previous-page']/a";
 }

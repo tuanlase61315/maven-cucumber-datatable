@@ -3,7 +3,7 @@ package stepDefinitions;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-import cucumber.api.java.en.Given;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumberOptions.Hooks;
@@ -52,6 +52,48 @@ public class ProductPageStep {
 		default:
 			break;
 		}
-		
 	}
+
+	@And("^Verify \"([^\"]*)\" icon is displayed$")
+	public void verifyPagingIconIsDisplayed(String iconName) {
+		switch (iconName) {
+		case "NextPage":
+			Assert.assertTrue(productPage.isNextPageIconDisplayed());			
+			break;
+		case "PreviousPage":
+			Assert.assertTrue(productPage.isPreviousIconDisplayed());
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@And("^Verify \"([^\"]*)\" icon is not displayed$")
+	public void verifyPagingIconIsNotDisplayed(String iconName) {
+		switch (iconName) {
+		case "NextPage":
+			Assert.assertFalse(productPage.isNextPageIconDisplayed());			
+			break;
+		case "PreviousPage":
+			Assert.assertTrue(productPage.isPreviousIconDisplayed());
+			break;
+		default:
+			break;
+		}
+	}
+
+	@And("^Click to \"([^\"]*)\" icon$")
+	public void clickToSomethingIcon(String iconName) {
+		switch (iconName) {
+		case "NextPage":
+			productPage.clickToNextPageIcon();
+			break;
+		case "PreviousPage":
+			productPage.clickToPreviousPageIcon();
+			break;
+		default:
+			break;
+		}
+	}
+
 }

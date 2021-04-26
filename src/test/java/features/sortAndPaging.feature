@@ -1,40 +1,6 @@
 @sortAndPaging
 Feature: Sort And Paging Feature
-	
-	Scenario Outline: Register User With Valid Data
-		#Link 
-		Given Click to "Register" link text
-		
-		#Radio button
-		When Select to Gender raido button with value "<Gender>"
-		
-		#Textbox
-		And Input to "FirstName" textbox with value "<FirstName>"
-		And Input to "LastName" textbox with value "<LastName>"
-		
-		#Dropdown
-		And Select "DateOfBirthDay" dropdown with value "<DateOfBirthDay>"
-		And Select "DateOfBirthMonth" dropdown with value "<DateOfBirthMonth>"
-		And Select "DateOfBirthYear" dropdown with value "<DateOfBirthYear>"
-		
-		#Textbox
-		And Input to "Email" textbox with value "<Email>"
-		And Input to "Company" textbox with value "<Company>"
-		And Input to "Password" textbox with value "<Password>"
-		And Input to "ConfirmPassword" textbox with value "<ConfirmPassword>"
-		
-		#Buton
-		And Click to "Register" button 
-		
-		#Text
-		Then Success message displayed "Your registration completed"
-		
-		
-    Examples: Register info
-      | Gender | FirstName | LastName | DateOfBirthDay | DateOfBirthMonth | DateOfBirthYear | Email              | Company | Password | ConfirmPassword | Message                     | 
-      | Male   | tuan      | le       | 29             | March            | 1993            | tuanla01@gmail.com | ABC     | 123123   | 123123          | Your registration completed | 
-  
-  
+	 
   Scenario Outline: Sort Product By Name: A to Z
     Given Click to "<Category>" in Top Menu
   	When Click to sub list with data "<List>"
@@ -77,3 +43,53 @@ Feature: Sort And Paging Feature
     Examples: Sort info
       | Category  | List     | Sort By      	  | 
       | Computers | Desktops | Price: High to Low |   
+      
+   
+  Scenario Outline: Paging display with 3 Product
+   Given Click to "<Category>" in Top Menu
+   When Click to sub list with data "<List>"
+   And Select "products-pagesize" dropdown with value "<Display>"
+   Then Verify search result display with "<Number Product>" products
+   And Verify "NextPage" icon is displayed
+   And Click to "NextPage" icon
+   And Verify "PreviousPage" icon is displayed
+   And Click to "PreviousPage" icon
+   And Verify "NextPage" icon is displayed
+   
+   
+    Examples: Sort info
+      | Category  | List      | Display | Number Product | 
+      | Computers | Notebooks | 3       | 3              | 
+      
+      
+         
+  Scenario Outline: Paging display with 6 Product
+   Given Click to "<Category>" in Top Menu
+   When Click to sub list with data "<List>"
+   And Select "products-pagesize" dropdown with value "<Display>"
+   Then Verify search result display with "<Number Product>" products
+   And Verify "NextPage" icon is not displayed
+
+    Examples: Sort info
+      | Category  | List      | Display | Number Product | 
+      | Computers | Notebooks | 6       | 6              | 
+   
+   
+   
+  Scenario Outline: Paging display with 9 Product
+   Given Click to "<Category>" in Top Menu
+   When Click to sub list with data "<List>"
+   And Select "products-pagesize" dropdown with value "<Display>"
+   Then Verify search result display with "<Number Product>" products
+   And Verify "NextPage" icon is not displayed
+
+    Examples: Sort info
+      | Category  | List      | Display | Number Product | 
+      | Computers | Notebooks | 9       | 6              | 
+   
+   
+   
+   
+   
+   
+   
