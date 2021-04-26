@@ -36,4 +36,7 @@ public class CommonPageUI {
 	//Search
 	public static final String DYNAMIC_CHECKBOX_BY_TEXT = "//label[text()='%s']/preceding-sibling::input";
 
+	//product
+	public static final String DYNAMIC_BUTTON_PRODUCT_DETAIL = "//div[@class='overview-buttons']//button[text()='%s']";
+	public static final String DYNAMIC_PRODUCT_NAME_BY_TEXT = "//h2[@class='product-title']/a[text()='%s']";
 }

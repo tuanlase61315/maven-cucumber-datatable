@@ -135,6 +135,14 @@ public class CommonPageObject extends BasePage {
 		clickToElement(driver, CommonPageUI.DYNAMIC_FOOTER_MENU_BY_TEXT, menuLinktext);
 	}
 	
-
+	public void clickToDynamicButtonInProductDetailByText(String buttonText) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_BUTTON_PRODUCT_DETAIL, buttonText);
+		clickToElement(driver, CommonPageUI.DYNAMIC_BUTTON_PRODUCT_DETAIL, buttonText);
+	}
+	
+	public void clickToDynamicProductNameByText(String productText) {
+		waitForElementClickable(driver, CommonPageUI.DYNAMIC_PRODUCT_NAME_BY_TEXT, productText);
+		clickToElement(driver, CommonPageUI.DYNAMIC_PRODUCT_NAME_BY_TEXT, productText);
+	}
 
 }
