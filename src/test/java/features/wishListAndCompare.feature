@@ -1,6 +1,5 @@
 @wishlistComapare
 Feature: Wishlist, Compare and Recent Reivew Feature
-	
 	Scenario Outline: Register User With Valid Data
 		#Link 
 		Given Click to "Register" link text
@@ -29,47 +28,44 @@ Feature: Wishlist, Compare and Recent Reivew Feature
 		#Text
 		Then Success message displayed "Your registration completed"
 		
-		#Button
-		Then Click to "Log out" link text
 		
 		
-	 Examples: Register info
-	 | Gender | FirstName | LastName | DateOfBirthDay | DateOfBirthMonth | DateOfBirthYear | Email              | Company | Password | ConfirmPassword |Message| 
-   | Male   | tuan      | le       | 29         		| March      		 | 1993        		   | tuanla15@gmail.com | ABC     | 123123   | 123123          |Your registration completed| 
-   
+    Examples: Register info
+      | Gender | FirstName | LastName | DateOfBirthDay | DateOfBirthMonth | DateOfBirthYear | Email              | Company | Password | ConfirmPassword | Message                     | 
+      | Male   | tuan      | le       | 29             | March            | 1993            | tuanla26@gmail.com | ABC     | 123123   | 123123          | Your registration completed | 
   
-  @login
-  Scenario Outline: Login With Valid Data
-  	#Link
-    Given Click to "Log in" link text
-    
-    #Textbox 
-    When Input to "Email" textbox with value "<Email>"
-    And Input to "Password" textbox with value "<Password>"
-    
-    #Button
-    And Click to "Log in" button
-    
-    #Link
-    Then Verify "Log out" link text is displayed 
-    
-   Examples: Login info
-	 | Email             | Password |
-   | tuanla15@gmail.com| 123123   |
-   
-   
+  
+
+	
    Scenario Outline:: Add to wishlist
     Given Click to "<Category>" in Top Menu
   	When Click to sub list with data "<List>"
   	When Click to product name "<Product Name>"
-  	And Click to product "<Add to wishlist>"
-  
-  	
-  	
+  	And Click to product "<Button>" button
+  	Then Verify Add to wishlist success with "<Message>"
+  	Given Open "<Page>" footer page
+  	Then Verify Column "<Column>" displayed "<Product Name>" in "<Table>" 
+  	When Click to Your Wishlist URL
+  	Then Verify Page Title displayed with "<WishlistTitle>"
    
-   Examples: Add to wishlist
-      | Category  | List     | Product Name            						 | Add to wishlist | Review Content | Rating | 
-      | Computers | Desktops | Lenovo IdeaCentre 600 All-in-One PC | The first    | it's OK        | 4      | 
+    Examples: Add wishlist
+      | Category  | List     | Product Name                        | Message                                     | Page     | Table | Column     | Button          | WishlistTitle       | 
+      | Computers | Desktops | Lenovo IdeaCentre 600 All-in-One PC | The product has been added to your wishlist | Wishlist | cart  | Product(s) | add-to-wishlist | Wishlist of tuan le | 
+  
+     
+   Scenario Outline:: Add product to Cart from Wishlist Page
+   	Given Click to "<Category>" in Top Menu
+  	Given Open "<Page>" footer page
+  	When Click to Checkbox Row "<Row>" in column "<Column>" of Table "<Table>"
+  	And Click to "Add to cart" button
+  	Then Verify Page Title displayed with "<ShoppingCartTitle>"
+  	Given Open "<Page>" footer page
+  	Then Verify No Data Message is displayed with "<Message>"
+  	
+    Examples: Add to Shopping Cart
+     | Category  | Message                | Page     |Row| Table | Column      | ShoppingCartTitle | 
+     | Computers | The wishlist is empty! | Wishlist | 1 |cart   | Add to cart | Shopping cart     | 
+  
       
       
       
@@ -80,10 +76,7 @@ Feature: Wishlist, Compare and Recent Reivew Feature
       
       
       
-      
-      
-      
-      
+
       
       
       

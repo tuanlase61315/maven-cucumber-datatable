@@ -78,5 +78,27 @@ public class ProductPageObject extends BasePage {
 		waitForElementClickable(driver, ProductPageUI.PREVIOUS_PAGE_ICON);
 		clickToElement(driver, ProductPageUI.PREVIOUS_PAGE_ICON);
 	}
+	
+	public String getAddWishlistSuccessMessage() {
+		waitForElementVisible(driver, ProductPageUI.ADD_WISHLIST_SUCCESS_MESSAGE);
+		return getTextElement(driver, ProductPageUI.ADD_WISHLIST_SUCCESS_MESSAGE);
+	}
+	
+	public void clickToYourWishlistUrl() {
+		waitForElementClickable(driver, ProductPageUI.YOUR_WISHLIST_URL);
+		clickToElement(driver, ProductPageUI.YOUR_WISHLIST_URL);
+	}
+	
+	public String getTextPageTitleH1() {
+		waitForElementVisible(driver, ProductPageUI.PAGE_TITLE_H1_TEXT);
+		return getTextElement(driver, ProductPageUI.PAGE_TITLE_H1_TEXT);
+	}
+	
+	public String getNoDataMessage() {
+		waitForElementVisible(driver, ProductPageUI.NO_DATA_MESSAGE);
+		return getTextElement(driver, ProductPageUI.NO_DATA_MESSAGE);
+	}
+	
+
 
 }

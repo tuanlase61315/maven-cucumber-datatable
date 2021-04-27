@@ -37,6 +37,11 @@ public class CommonPageUI {
 	public static final String DYNAMIC_CHECKBOX_BY_TEXT = "//label[text()='%s']/preceding-sibling::input";
 
 	//product
-	public static final String DYNAMIC_BUTTON_PRODUCT_DETAIL = "//div[@class='overview-buttons']//button[text()='%s']";
+	public static final String DYNAMIC_BUTTON_PRODUCT_DETAIL = "//div[@class='overview-buttons']//div[@class='%s']";
 	public static final String DYNAMIC_PRODUCT_NAME_BY_TEXT = "//h2[@class='product-title']/a[text()='%s']";
+
+
+	public static final String DYNAMIC_TABLE_COLUMN_NAME_SIBLING = "//table[@class='%s']//th[string()='%s']/preceding-sibling::th";
+	public static final String TEXTBOX_AT_COLUMN_AND_ROW_INDEX = "//tr[%s]/td[%s]";
+	
 }

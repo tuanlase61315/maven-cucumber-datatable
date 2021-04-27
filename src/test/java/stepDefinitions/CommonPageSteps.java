@@ -25,20 +25,6 @@ public class CommonPageSteps {
 
 	@Then("^Click to \"([^\"]*)\" link text$")
 	public void clickToDynamicLinkText(String linkText) {
-//		switch (linkText) {
-//		case "Register":
-//			commonPage.clickToDynamicTextLinkByText("Register");
-//			break;
-//		case "Log out":
-//			commonPage.clickToDynamicTextLinkByText("Log out");
-//			break;
-//		case "Log in":
-//			commonPage.clickToDynamicTextLinkByText("Log in");
-//			break;
-//		case "My account":
-//			commonPage.clickToDynamicTextLinkByText("My account");
-//			break;
-//		}
 		commonPage.clickToDynamicTextLinkByText(linkText);
 	}
 
@@ -166,15 +152,37 @@ public class CommonPageSteps {
 	
 	 @Given("^Open \"([^\"]*)\" footer page$")
 	public void onenFooterPage(String pageName) {
-		commonPage.clickToDynamicFooterLinktext(pageName);	    
+		commonPage.clickToDynamicFooterLinktext(pageName);
+		commonPage.sleepInSecond(3);
 	}
-
-
 
 	@When("^Check to \"([^\"]*)\" checkbox$")
 	public void checkToCheckbox(String checkboxName) {
 		commonPage.checkToDynamicCheckboxByText(checkboxName);	    
 	}
+	
+	@When("^Click to product name \"([^\"]*)\"$")
+	public void clickToProductName(String productName)  {
+		commonPage.clickToDynamicProductNameByText(productName);
+	}
+
+	@When("^Click to product \"([^\"]*)\" button$")
+	public void clickToProductButton(String buttonText)  {
+		commonPage.sleepInSecond(1);
+		commonPage.clickToDynamicButtonInProductDetailByText(buttonText);	   	   
+	}
+
+
+
+	@Then("^Verify Column \"([^\"]*)\" displayed \"([^\"]*)\" in \"([^\"]*)\"$")
+	public void verifyColumnDisplayedIn(String columnName, String productName, String tableClass) {
+		Assert.assertTrue(commonPage.isInformationDisplayedAtColumnNameAndRowNumber(tableClass, columnName, "1", productName));	
+	}
+	
+	@When("^Click to Checkbox Row \"([^\"]*)\" in column \"([^\"]*)\" of Table \"([^\"]*)\"$")
+    public void clickToDataOfTable(String rowIndex, String column, String table)  {
+    	commonPage.clickToInfomationAtColumnNameAndRowNumber(table, column, rowIndex);
+    }
 
 
 }

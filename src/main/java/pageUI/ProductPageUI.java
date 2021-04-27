@@ -12,4 +12,10 @@ public class ProductPageUI {
 	
 	public static final String NEXT_PAGE_ICON = "//li[@class='next-page']/a";
 	public static final String PREVIOUS_PAGE_ICON = "//li[@class='previous-page']/a";
+	
+	
+	public static final String ADD_WISHLIST_SUCCESS_MESSAGE = "//p[@class='content']";
+	public static final String YOUR_WISHLIST_URL = "//div[@class='share-info']/a";
+	public static final String PAGE_TITLE_H1_TEXT = "//div[@class='page-title']/h1";
+	public static final String NO_DATA_MESSAGE = "//div[@class='no-data']";
 }

@@ -58,7 +58,7 @@ public class ProductPageStep {
 	public void verifyPagingIconIsDisplayed(String iconName) {
 		switch (iconName) {
 		case "NextPage":
-			Assert.assertTrue(productPage.isNextPageIconDisplayed());			
+			Assert.assertTrue(productPage.isNextPageIconDisplayed());
 			break;
 		case "PreviousPage":
 			Assert.assertTrue(productPage.isPreviousIconDisplayed());
@@ -67,12 +67,12 @@ public class ProductPageStep {
 			break;
 		}
 	}
-	
+
 	@And("^Verify \"([^\"]*)\" icon is not displayed$")
 	public void verifyPagingIconIsNotDisplayed(String iconName) {
 		switch (iconName) {
 		case "NextPage":
-			Assert.assertFalse(productPage.isNextPageIconDisplayed());			
+			Assert.assertFalse(productPage.isNextPageIconDisplayed());
 			break;
 		case "PreviousPage":
 			Assert.assertTrue(productPage.isPreviousIconDisplayed());
@@ -95,5 +95,28 @@ public class ProductPageStep {
 			break;
 		}
 	}
+
+	@Then("^Verify Add to wishlist success with \"([^\"]*)\"$")
+	public void verifyAddToWishlistSuccessWith(String message) {
+		Assert.assertEquals(productPage.getAddWishlistSuccessMessage(), message);
+	}
+
+	@When("^Click to Your Wishlist URL$")
+	public void clickToYourWishlistURL() {
+		productPage.clickToYourWishlistUrl();
+	}
+	
+
+    @Then("^Verify Page Title displayed with \"([^\"]*)\"$")
+    public void verifyPageTitleDisplayed(String wishlisttitle)  {
+    	productPage.sleepInSecond(3);
+    	Assert.assertEquals(productPage.getTextPageTitleH1(), wishlisttitle);
+    }
+    
+    @Then("^Verify No Data Message is displayed with \"([^\"]*)\"$")
+    public void verifyNoDataMessageIsDisplayedWithSomething(String message) {
+    	Assert.assertEquals(productPage.getNoDataMessage(), message);
+    }
+	
 
 }

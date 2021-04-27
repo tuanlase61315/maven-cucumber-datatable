@@ -8,6 +8,7 @@ import pageUI.HomePageUI;
 import pageUI.ProductPageUI;
 import pageUI.RegisterPageUI;
 
+
 public class CommonPageObject extends BasePage {
 	private WebDriver driver;
 
@@ -136,6 +137,7 @@ public class CommonPageObject extends BasePage {
 	}
 	
 	public void clickToDynamicButtonInProductDetailByText(String buttonText) {
+		sleepInSecond(2);
 		waitForElementClickable(driver, CommonPageUI.DYNAMIC_BUTTON_PRODUCT_DETAIL, buttonText);
 		clickToElement(driver, CommonPageUI.DYNAMIC_BUTTON_PRODUCT_DETAIL, buttonText);
 	}
@@ -144,5 +146,23 @@ public class CommonPageObject extends BasePage {
 		waitForElementClickable(driver, CommonPageUI.DYNAMIC_PRODUCT_NAME_BY_TEXT, productText);
 		clickToElement(driver, CommonPageUI.DYNAMIC_PRODUCT_NAME_BY_TEXT, productText);
 	}
+	
+	/* Check data table */
+	public boolean isInformationDisplayedAtColumnNameAndRowNumber(String tableClass, String columnName, String rowIndex, String expectedValue) {
+		int columnNameIndex = getElementSize(driver, CommonPageUI.DYNAMIC_TABLE_COLUMN_NAME_SIBLING, tableClass, columnName) + 1;
+		String actualValue = getElementText(driver, CommonPageUI.TEXTBOX_AT_COLUMN_AND_ROW_INDEX, rowIndex, String.valueOf(columnNameIndex));
+		return actualValue.equals(expectedValue);
+	}
+	
+	public void clickToInfomationAtColumnNameAndRowNumber(String tableClass, String columnName, String rowIndex) {
+		int columnNameIndex = getElementSize(driver, CommonPageUI.DYNAMIC_TABLE_COLUMN_NAME_SIBLING, tableClass, columnName) + 1;
+		clickToElement(driver, CommonPageUI.TEXTBOX_AT_COLUMN_AND_ROW_INDEX, rowIndex, String.valueOf(columnNameIndex));
+	}
+
+//	public boolean isNoRecordFoundDisplayedAtTableName(WebDriver driver, String tableID) {
+//		waitForElementVisible(driver, CommonPageUI.NO_RECORD_FOUND_TEXT_AT_TABLE_NAME, tableID);
+//		return isElementDisplayed(driver, CommonPageUI.NO_RECORD_FOUND_TEXT_AT_TABLE_NAME, tableID);
+//	}
+
 
 }
